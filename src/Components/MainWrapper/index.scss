@@ -1,0 +1,32 @@
+.main-wrapper {
+    background-color: #f8f8ff;
+    padding: 20px;
+
+    .main-heading {
+        color: #2e3035;
+        margin-bottom: 5px;
+        font-size: 22px;
+    }
+
+    .sub-heading {
+        color: #7f7f7f;
+        font-size: 16px;
+    }
+
+    .card-wrapper {
+        background-color: #ffffff;
+        padding: 24px;
+        border-radius: 6px;
+        &.add-margin {
+            margin-top: 28px;
+        }
+
+        .card-heading {
+            color: #2e3035;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+    }
+}
+

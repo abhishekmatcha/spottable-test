@@ -1,0 +1,22 @@
+.tab-list {
+    border: 0.5px solid #ccc;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 0;
+    list-style: none;
+    width: max-content;
+  }
+  
+  .tab-list-item {
+    display: flex;
+    list-style: none;
+    padding: 0.5rem 4.75rem;
+  }
+  
+  .tab-list-active {
+    background-color: #d7dcff;
+    border: 0.5px solid #7b81a6;
+    border-radius: 3px;
+  }

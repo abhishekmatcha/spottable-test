@@ -1,0 +1,35 @@
+.input {
+    flex: 1;
+    border: none;
+    height: 46px;
+    font-size: 14px;
+    padding: 4px 0 0 0;
+    &:focus {
+        outline: transparent;
+    }
+    background: #f1f1f1;
+}
+
+.access-wrapper {
+    border: 0.5px solid #f2f2f2;
+    background-color: #f1f1f1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .add-btn{
+        background-color: #1f2fa0;
+        color: #FFFFFF;
+        outline: none;
+        border: none;
+        padding: 18px;
+    }
+
+    .user-dropdown .menu-container .menu-trigger{
+        background-color: unset;
+    }
+}
+
+.user-data-render {
+    margin-top: 24px;
+}
