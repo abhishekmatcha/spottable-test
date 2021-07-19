@@ -40,7 +40,7 @@ const DropDown = ({handleSelected, currentAccess}) => {
                 <button onClick={onClick} className="menu-trigger">
                 <span>
                     {accessType}
-                    <img src={expandIcon} />
+                    <img src={expandIcon} alt='expand'/>
                 </span>
                 </button>
                 <nav

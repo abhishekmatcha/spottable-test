@@ -27,7 +27,7 @@ const UserCard = ({ id, name, emailId, role, accessType, handleAccess, handleDel
                 </div>
             </div>
             <DropDown handleSelected={handleAccess} currentAccess={accessType}/>
-            <img src={deleteIcon} onClick={() => handleDelete(id)} />
+            <img src={deleteIcon} alt='delete' onClick={() => handleDelete(id)} />
         </div>
     )
 }

@@ -27,7 +27,7 @@ const TagsInput = props => {
 	return (
 		<div>
 			<div className="tags-input">
-				<img src={Icon} onClick={() => props.selectedTags([...searchItems])} />
+				<img src={Icon} alt='search' onClick={() => props.selectedTags([...searchItems])} />
 				<div className='wrap-tags'>
 					<ul id="tags">
 						{searchItems.map((tag, index) => (

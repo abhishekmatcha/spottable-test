@@ -3,41 +3,29 @@ import DropDown from '../Dropdown';
 import UserCard from '../UserCard';
 import MainWrapper from '../MainWrapper';
 import './access.scss';
+import { DEFULT_USER_CONFIG } from './constants';
 
-const DefaultUserConfig = [
-    {
-        id: 1,
-        name: 'Matcha Sesha Abhishek',
-        role: 'Front end',
-        email: 'seshaabhishek@gmail.com',
-        accessType: 'Admin Role'
-    },
-    {
-        id: 2,
-        name: 'Sesha Abhishek',
-        role: 'Back end',
-        email: 'seshaabhishek@gmail.com',
-        accessType: 'View Access'
-    }
-]
-
-const AccessAddition = (accessType) => {
-    const [userData, setUserData] = useState(DefaultUserConfig);
+const AccessAddition = () => {
+    const [userData, setUserData] = useState(DEFULT_USER_CONFIG);
     const [newUserName, setNewUserName] = useState('');
-    const [newUserAccess, setNewUserAccess] = useState('view')
+    const [newUserAccess, setNewUserAccess] = useState('View Access');
+    const [filteredData, setFilteredData] = useState([]);
+    const [applyFilters, setApplyFilter] = useState(false)
 
     const handleSelected = (accessType) => {
-        console.log('------Selected Access======', accessType);
-        //TODO: Update the access type from here
+        setNewUserAccess(accessType)
     }
 
     const handleUserAddition = () => {
+        setApplyFilter(false);
         const newUserData = [
             ...userData,
             {
-                id: new Date(),//TODO: we can add any random number
+                id: new Date(), //TODO: we can add any random number for Id
                 name: newUserName,
-                accessType: newUserAccess
+                accessType: newUserAccess,
+                role: '',
+                email: newUserName //TODO: For now just added the name itself here we can change if needed
             }
         ];
 
@@ -48,6 +36,7 @@ const AccessAddition = (accessType) => {
     const handleUserDeletion = (id) => {
         const newArray = userData.filter((item) => item.id !== id)
 
+        setApplyFilter(false);
         setUserData(newArray);
         setNewUserName('');
     }
@@ -55,15 +44,16 @@ const AccessAddition = (accessType) => {
     const handleOnChange = (e) => {
         const searchString = e.target.value;
         setNewUserName(searchString);
+        
+        setApplyFilter(true);
 
-        //TODO: As a technique to reduce the filter calls and then update the data.
-        const filteredCharacters = DefaultUserConfig.filter((eachData) => {
+        //TODO: we can use Debounce technique to reduce the filter calls and then update the data.
+        const filteredCharacters = userData.filter((eachData) => {
             return eachData.name.toLowerCase().includes(searchString.toLowerCase()) || eachData.email.toLowerCase().includes(searchString.toLowerCase());
         })
-        setUserData(filteredCharacters);
+
+        setFilteredData(filteredCharacters);
     }
-
-
 
     return (
         <MainWrapper>
@@ -71,7 +61,7 @@ const AccessAddition = (accessType) => {
                 <input
                     className='input'
                     type="text"
-                    // onKeyUp={event => event.key == enter} 
+                    // onKeyUp={event => event.key == enter} //TODO: We can also add things on Key up also if needed and can keep add functionality
                     value={newUserName}
                     onChange={handleOnChange}
                     placeholder="Add by name or email"
@@ -81,7 +71,7 @@ const AccessAddition = (accessType) => {
             </div>
             <div className='user-data-render'>
                 {
-                    userData.length ? userData.map(({ id, name, role, email, accessType }) => (
+                    userData.length ? [applyFilters ? [...filteredData] : [...userData]][0].map(({ id, name, role, email, accessType }) => (
                         <UserCard key={id} id={id} name={name} emailId={email} role={role} accessType={accessType} handleAccess={handleSelected} handleDelete={handleUserDeletion} />
                     )) : null
                 }

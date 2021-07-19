@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import './radio.scss';
 
 class Radiobutton extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     renderRadioButtons = (config) => {
         return config.map((radio, index) => {
